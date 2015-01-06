@@ -24,24 +24,24 @@ if (isset($_GET['loc_type']) && isset($_GET['loc']) && isset($_GET['temp_unit'])
 				rss_handle($rss, $woeid, $temp_unit);	
 			}
 			$var_loc = str_replace('+', ' ', $loc);
-			$var_loc = ucwords ($var_loc);	
+			$var_loc = ucwords ($var_loc);
+
 		} else {
 			
 		}
+		
 	} else {
+
 		$url = "http://where.yahooapis.com/v1/concordance/usps/$loc?appid=fxvoFhrV34ElnC8.DgDhmM8P9LUNKa18wSzFVb_EDCaJWmnMVPBn.b.F6meOZaw7_y8Oet.C";
-		//echo $url;
 		$xml_yahoo_geo = @simplexml_load_file($url);
-		//print_r($xml_yahoo_geo);
+
 		if ($xml_yahoo_geo) {
-			//draw_first_row();
+
 			$woeid = $xml_yahoo_geo->woeid;
-	
 			$rss = "http://weather.yahooapis.com/forecastrss?w=$woeid&u=$temp_unit";
-			//echo $rss;
 			$count = 1;
-			
 			rss_handle($rss, $woeid, $temp_unit);
+
 		} else {
 			
 		}	
